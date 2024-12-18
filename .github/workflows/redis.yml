@@ -23,8 +23,9 @@ jobs:
         uses: actions/checkout@v4
       - name: Install dependencies
         run: npm ci
-      - name: Connect to Redis
-        run: node client.js
+      - name: Run the application
+        run: |
+          node src/index.js
         env:
           REDIS_HOST: redis
           REDIS_PORT: 6379
