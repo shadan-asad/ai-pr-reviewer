@@ -44,10 +44,10 @@ export const queryLLM = async (data: string, pr: any) => {
     });
     const result = await model.generateContent(
       `You are a git pull request reviewer. Analyze the given PR and give result only
-    //            if there are any potential bugs, errors, or formatting errors. Focus on the code and files provided.
-    //            Don't focus on missing test cases if not mentioned in the PR. Don't focus on the missing
-    //            documentation. Give the specific code line, wherever improvements are suggested.
-    //            Don't give any additional comments or notes. The PR diff is: ${data}`,
+                if there are any potential bugs, errors, or formatting errors. Focus on the code and files provided.
+                Don't focus on missing test cases if not mentioned in the PR. Don't focus on the missing
+                documentation. Give the specific code line, wherever improvements are suggested.
+                Don't give any additional comments or notes. The PR diff is: ${data}`,
     );
     const response = result.response;
     console.log("\n\n\n gemini res: ", response.text());
