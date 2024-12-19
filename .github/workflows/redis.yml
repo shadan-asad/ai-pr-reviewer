@@ -1,4 +1,4 @@
-name: Redis container example
+name: Redis container setup
 
 on:
   push:
@@ -6,13 +6,13 @@ on:
       - main
 
 jobs:
-  container-job:
+  redis-setup:
     runs-on: ubuntu-latest
-    container:
-      image: node:20-bookworm-slim
     services:
       redis:
-        image: redis
+        image: redis:latest
+        ports:
+          - 6379:6379
         options: >-
           --health-cmd "redis-cli ping"
           --health-interval 10s
@@ -23,9 +23,8 @@ jobs:
         uses: actions/checkout@v4
       - name: Install dependencies
         run: npm ci
-      - name: Run the application
-        run: |
-          node src/index.ts
+      - name: Run tests
+        run: npm test
         env:
-          REDIS_HOST: redis
+          REDIS_HOST: 127.0.0.1
           REDIS_PORT: 6379
