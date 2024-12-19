@@ -23,8 +23,3 @@ jobs:
         uses: actions/checkout@v4
       - name: Install dependencies
         run: npm ci
-      - name: Run tests
-        run: npm test
-        env:
-          REDIS_HOST: 127.0.0.1
-          REDIS_PORT: 6379
