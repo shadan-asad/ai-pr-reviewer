@@ -1,12 +1,13 @@
 # AI Pull Request Reviewer
 
-AI Pull Request Reviewer is a cutting-edge Node.js-based application that harnesses the power of artificial intelligence to review pull requests. By accepting a URL for a pull request, it analyzes the files and code, providing feedback on errors, code formatting, and potential issues. The application uses the Gemini model for the analysis.
+AI Pull Request Reviewer is a cutting-edge Node.js-based application that harnesses the power of artificial intelligence to review pull requests. By accepting a URL for a pull request, it analyzes the files and code, providing feedback on errors, code formatting, and potential issues. The application uses the Gemini model for the analysis and Redis for queue management.
 
 ## Features
 - **Pull Request Analysis**: Automatically reviews pull requests and provides AI-driven feedback.
 - **Error Detection**: Identifies syntax and runtime errors in the code.
 - **Code Formatting**: Ensures the code follows the specified coding standards and formats it accordingly.
 - **Potential Issues**: Highlights potential issues and best practices violations.
+- **Asynchronous Processing**: Uses Redis to queue and process pull requests asynchronously for efficient handling.
 
 ## Benefits of Using Artificial Intelligence
 - **Efficiency**: Automates the code review process, saving valuable time for developers.
@@ -41,6 +42,7 @@ AI Pull Request Reviewer is a cutting-edge Node.js-based application that harnes
 ## Prerequisites
 - Node.js (>= 18.x)
 - PostgreSQL
+- Redis
 - Gemini API Key for code analysis.
 
 ## Installation
@@ -57,6 +59,11 @@ Create a .env file in the root directory and add the following variables:
 ```
 API_KEY=your_gemini_api_key
 DB_URL=postgresql://username:password@localhost:5432/mydb
+REDIS_URL=your-redis-url
+```
+## Run the worker
+```
+npm run start-worker
 ```
 
 ## Run the project
