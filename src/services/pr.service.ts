@@ -1,7 +1,5 @@
 import axios from 'axios';
 import { createPr, getPrReview, getPrStatus, saveReview, updateStatus } from './db.service';
-import { config } from '../config/config';
-import { GoogleGenerativeAI } from '@google/generative-ai';
 import reviewQueue from '../workers/queue';
 
 // Analyses the PR and saves the result in db. Returns the prId for references.
@@ -20,31 +18,6 @@ export const reviewPrService = async (url: string) => {
   } catch (error) {
     console.error(error);
     throw new Error('Error interacting with the model');
-  }
-};
-
-// Process the review asynchronously
-export const queryLLM = async (data: any, pr: { prid: number; }) => {
-  try {
-    console.log('llm running');
-    const genAI = new GoogleGenerativeAI(config.apiKey);
-    const model = genAI.getGenerativeModel({
-      model: 'gemini-1.5-pro',
-      tools: [{ codeExecution: {} }],
-    });
-
-    const result = await model.generateContent(`You are a git pull request reviewer. Analyze the given PR and give result only if there are any potential bugs, errors, or formatting errors. Focus on the code and files provided. Don't focus on missing test cases if not mentioned in the PR. Don't focus on the missing documentation. Give the specific code line, wherever improvements are suggested. Don't give any additional comments or notes. The PR diff is: ${data}`);
-    
-    const response = result.response;
-    console.log('gemini res: ', response.text());
-
-    if (typeof pr?.prid === 'number') {
-      await saveReview(pr.prid, response.text());
-    }
-    console.log('llm done');
-  } catch (error) {
-    console.error(error);
-    if (typeof pr?.prid === 'number') updateStatus(pr?.prid);
   }
 };
 
