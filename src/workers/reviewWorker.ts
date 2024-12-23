@@ -22,7 +22,8 @@ reviewQueue.process(async (job) => {
         given PR and give result only if there are any potential bugs, errors, or formatting errors.
         Focus on the code and files provided. Don't focus on missing test cases if not mentioned 
         in the PR. Don't focus on the missing documentation. Give the specific code line, wherever 
-        improvements are suggested. Don't give any additional comments or notes. 
+        improvements are suggested. Don't give any additional comments or notes.
+        Give the suggestins in a json format. Use one object for each file.
         The PR diff is: ${data}`);
 
     const response = result.response;
