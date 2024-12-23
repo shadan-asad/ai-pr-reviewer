@@ -1,7 +1,7 @@
 import Queue from 'bull';
 import { config } from '../config/config';
 
-const reviewQueue = new Queue('reviewQueue', config.redisUrl as string);
+const reviewQueue = new Queue('reviewQueue', config.redisUrl);
 
 reviewQueue.on('completed', (job) => {
   console.log(`Job ${job.id} completed!`);

@@ -27,7 +27,7 @@ export const reviewPrService = async (url: string) => {
 export const queryLLM = async (data: any, pr: { prid: number; }) => {
   try {
     console.log('llm running');
-    const genAI = new GoogleGenerativeAI(config.apiKey as string);
+    const genAI = new GoogleGenerativeAI(config.apiKey);
     const model = genAI.getGenerativeModel({
       model: 'gemini-1.5-pro',
       tools: [{ codeExecution: {} }],

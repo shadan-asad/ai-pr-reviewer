@@ -2,6 +2,7 @@ import { saveReview, updateStatus } from '../services/db.service';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import { fetchPRData } from '../services/pr.service';
 import reviewQueue from './queue';
+import { config } from '../config/config';
 
 reviewQueue.process(async (job) => {
   console.log("reviewWorker running");
@@ -11,7 +12,7 @@ reviewQueue.process(async (job) => {
   const data = await fetchPRData(url);
 
   try {
-    const genAI = new GoogleGenerativeAI(process.env.API_KEY as string);
+    const genAI = new GoogleGenerativeAI(config.apiKey);
     const model = genAI.getGenerativeModel({
       model: "gemini-1.5-pro",
       tools: [{ codeExecution: {} }],
