@@ -1,6 +1,6 @@
 # AI Pull Request Reviewer
 
-AI Pull Request Reviewer is a cutting-edge Node.js-based application that harnesses the power of artificial intelligence to review pull requests. By accepting a URL for a pull request, it analyzes the files and code, providing feedback on errors, code formatting, and potential issues. The application uses the Gemini model for the analysis and Redis for queue management.
+AI Pull Request Reviewer is a cutting-edge Node.js-based application that uses AI to review pull requests. By accepting a URL for a pull request, it analyzes the files and code, providing feedback on errors, code formatting, and potential issues. The application uses the Gemini model for the analysis and Redis for queue management.
 
 ## Features
 - **Pull Request Analysis**: Automatically reviews pull requests and provides AI-driven feedback.
