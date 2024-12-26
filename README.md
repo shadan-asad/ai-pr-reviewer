@@ -3,8 +3,8 @@
 AI Pull Request Reviewer is a cutting-edge Node.js-based application that uses AI to review pull requests. By accepting a URL for a pull request, it analyzes the files and code, providing feedback on errors, code formatting, and potential issues. The application uses the Gemini model for the analysis and Redis for queue management.
 
 ## Live Endpoints
-- **GET Status**: https://ai-pr-reviewer.onrender.com/status/39
-- **GET Result**: https://ai-pr-reviewer.onrender.com/result/39
+- **GET Status**: https://ai-pr-reviewer.onrender.com/status/30
+- **GET Result**: https://ai-pr-reviewer.onrender.com/result/30
 - **POST Review**: https://ai-pr-reviewer.onrender.com/review?url=https://github.com/shadan-asad/ai-pr-reviewer/pull/4
 
 ## Features
