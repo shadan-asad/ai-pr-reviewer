@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc",
-    "start": "node dist/index.js",
+    "start-service": "node dist/index.js",
     "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
-    "start-worker": "ts-node-dev --loader ts-node/esm src/workers/reviewWorker.ts"
+    "start-worker": "ts-node-dev --loader ts-node/esm src/workers/reviewWorker.ts",
+    "start": "concurrently \"npm run start-worker\" \"npm run start-service\""
   },
   "keywords": [],
   "author": "",
@@ -16,6 +17,7 @@
     "@google/generative-ai": "^0.21.0",
     "axios": "^1.7.8",
     "bull": "^4.16.5",
+    "concurrently": "^9.1.0",
     "dotenv": "^16.4.5",
     "express": "^4.21.1",
     "node-fetch": "^3.3.2",
