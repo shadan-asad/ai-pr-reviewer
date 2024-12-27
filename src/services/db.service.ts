@@ -14,16 +14,22 @@ export const createPr = async () => {
 export const getPrStatus = async (prid: string) => {
   try {
     const pr = await PR.findOne({ where: { prid: prid } });
+    if(!pr) {
+      throw new Error("PR not found");
+    }
     return { prid: pr?.dataValues.prid, status: pr?.dataValues.status };
   } catch (error) {
     console.error(error);
-    throw new Error("Error in fetching from DB");
+    throw error;
   }
 };
 
 export const getPrReview = async (prid: string) => {
   try {
     const pr = await PR.findOne({ where: { prid: prid } });
+    if(!pr) {
+      throw new Error("PR not found");
+    }
     return {
       prid: pr?.dataValues.prid,
       status: pr?.dataValues.status,
@@ -31,7 +37,7 @@ export const getPrReview = async (prid: string) => {
     };
   } catch (error) {
     console.error(error);
-    throw new Error("Error in fetching from DB");
+    throw error;
   }
 };
 
