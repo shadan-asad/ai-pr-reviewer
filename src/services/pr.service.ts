@@ -45,7 +45,7 @@ export const getPrStatusService = async (prid: string) => {
     return status;
   } catch (error) {
     console.error(error);
-    throw new Error('Error in fetching from DB');
+    return { message: 'PR not found' }
   }
 };
 
@@ -55,6 +55,6 @@ export const getPrReviewService = async (prid: string) => {
     return status;
   } catch (error) {
     console.error(error);
-    throw new Error('Error in fetching from DB');
+    return { message: 'PR not found' }
   }
 };

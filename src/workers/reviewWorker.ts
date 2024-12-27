@@ -9,9 +9,11 @@ reviewQueue.process(async (job) => {
   const { url, prid } = job.data;
   console.log("url: ", url);
   console.log("prid: ", prid);
-  const data = await fetchPRData(url);
 
   try {
+    // Get data from the PR
+    const data = await fetchPRData(url);
+    
     const genAI = new GoogleGenerativeAI(config.apiKey);
     const model = genAI.getGenerativeModel({
       model: "gemini-1.5-pro",
@@ -26,6 +28,7 @@ reviewQueue.process(async (job) => {
         Give the suggestins in a json format. Use one object for each file.
         The PR diff is: ${data}`);
 
+    console.log("result: ", result);
     const response = result.response;
     await saveReview(prid, response.text());
     console.log(`PR Review processed: ${prid}`);
